@@ -1,0 +1,13 @@
+#+TITLE: crothr: a Nix package of Torch for R
+
+* Abstract
+crothr is a [[https://nixos.org/][Nix]] package of [[https://torch.mlverse.org/][Torch for R]], based on [[https://github.com/NixOS/nixpkgs][nixpkgs]].
+This package installs the R package as well as an appropriate [[https://pytorch.org/cppdocs/index.html][libtorch]].
+This alpha version is still under development.
+
+* Examples
+** With a Nix flake
+See [[file:example]] for a Nix flake that installs a shell script training a neural network by Torch for R.
+
+* License
+[[file:LICENSE][MIT License]]
