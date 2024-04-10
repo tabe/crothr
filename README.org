@@ -7,7 +7,7 @@ This alpha version is still under development.
 
 * Examples
 ** With a Nix flake
-See [[file:example]] for a Nix flake that installs a shell script training a neural network by Torch for R.
+See an [[file:example-cpu][an example (for CPU)]] and [[file:example-gpu][another (for GPU)]] for a Nix flake that installs a shell script training a neural network by Torch for R.
 
 * License
 [[file:LICENSE][MIT License]]
