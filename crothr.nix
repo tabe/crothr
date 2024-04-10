@@ -1,4 +1,5 @@
 { cudaSupport
+, lib
 , stdenv
 , fetchurl
 , rPackages
@@ -70,12 +71,21 @@
     ];
   };
 
-  torch = runCommand "torch" { buildInputs = [ build-R ]; } ''
+  install-torch = ''
     export TORCH_HOME=$out
     export TORCH_URL="${libtorch-zip}"
     export LANTERN_URL="${lantern-zip}"
     Rscript --vanilla -e "torch::install_torch()"
   '';
+
+  post-install-torch = lib.optionalString cudaSupport ''
+    cd $out/lib
+    ln -s libcudart-*.so.11.0 libcudart.so.11.0
+    ln -s libcublas-*.so.11 libcublas.so.11
+    ln -s libnvToolsExt-*.so.1 libnvToolsExt.so.1
+  '';
+
+  torch = runCommand "torch" { buildInputs = [ build-R ]; } (install-torch + post-install-torch);
 
 in {
   r-torch = r-torch;
